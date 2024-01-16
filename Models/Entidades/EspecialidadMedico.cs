@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoFinal.Models.Entidades
 {
-    public class Consultorio
+    public class EspecialidadMedico
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdConsultorio { get; set; }
+        public int IdEspecialidad { get; set; }
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
-        public int numero_consultorio { get; set; }
-        public string direccion_consultorio { get; set; }
-        public string telefono_consultorio { get; set; }
+        public string NombreEspecialidad { get; set; }
 
-    
+        [Display(Name = "Disponibilidad")]
+        public bool Disponible { get; set; }
+
     }
 }

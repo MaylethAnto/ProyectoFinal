@@ -13,9 +13,8 @@ namespace ProyectoFinal.Models.Entidades
         public string dosis_medica { get; set; }
         public string observaciones { get; set; } 
 
-        //llaves foraneas
 
-        public Cita cita { get; set; }
-        public Medico medico { get; set; }
+
+  
     }
 }

@@ -14,6 +14,10 @@ namespace ProyectoFinal.Models.Entidades
         public DateTime fecha_examen { get; set; }
         public string resultado { get; set; }
 
+        [Required(ErrorMessage = "El campo {0} es obligatorio.")]
+        [Column(TypeName = "decimal (18,2)")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
+        public decimal precio { get; set; }
 
         //llaves foraneas
 

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Cita\" />
     <Folder Include="Views\ConsultaMedica\" />
     <Folder Include="Views\Consultorio\" />

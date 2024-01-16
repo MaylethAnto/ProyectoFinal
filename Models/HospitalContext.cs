@@ -19,6 +19,8 @@ namespace ProyectoFinal.Models
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<RecetaMedica> RecetaMedicas { get; set; }
 
+        public DbSet<EspecialidadMedico> especialidadMedicos { get; set; }
+
         public DbSet<ServiciosMedicos> ServiciosMedicos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)  //Este metodo q va ayudar a conectar con la BDD
         {

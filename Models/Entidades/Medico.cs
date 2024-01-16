@@ -11,10 +11,13 @@ namespace ProyectoFinal.Models.Entidades
 
         [Required(ErrorMessage = "El campo {0} es obligatorio")]
         public string nombre_medico { get; set; }
-        public string especialidad_medico { get; set; }
 
-        public bool estado_medico { get; set; }
+        public string correo { get; set; }
 
+        public string password { get; set; }
 
+        //llave foranea
+        public Cita Cita { get; set; }
+        public EspecialidadMedico EspecialidadMedico { get; set; }
     }
 }

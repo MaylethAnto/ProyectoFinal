@@ -14,6 +14,6 @@ namespace ProyectoFinal.Models.Entidades
         public int estado_horario { get; set; }
 
         //llave foranea
-        public Medico medico { get; set; }
+        public Cita citas { get; set; }
     }
 }

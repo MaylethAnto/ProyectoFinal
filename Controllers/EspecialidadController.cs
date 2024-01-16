@@ -5,17 +5,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoFinal.Controllers
 {
-    public class ConsultorioController : Controller
+    public class EspecialidadController : Controller
     {
         public readonly HospitalContext _context;
 
-        public ConsultorioController(HospitalContext context)
+        public EspecialidadController(HospitalContext context)
         {
             _context = context;
         }
-        public async Task<IActionResult> ListadoConsultorio()
+        public async Task<IActionResult> ListadoEspecialidadM()
         {
-            return View(await _context.Consultorios.ToListAsync());
+            return View(await _context.especialidadMedicos.ToListAsync());
         }
 
         public IActionResult Crear()
@@ -23,14 +23,14 @@ namespace ProyectoFinal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Crear(Consultorio consultorio)
+        public async Task<IActionResult> Crear(EspecialidadMedico especialidadMedico)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(consultorio);
+                _context.Add(especialidadMedico);
                 await _context.SaveChangesAsync();
-                TempData["AlertMessage"] = "Consultorio creado exitosamente";
-                return RedirectToAction("ListadoConsultorio");
+                TempData["AlertMessage"] = "Especialidad Medica creada exitosamente";
+                return RedirectToAction("ListadoEspecialidadM");
             }
             else
             {
@@ -42,23 +42,23 @@ namespace ProyectoFinal.Controllers
         [HttpGet]
         public async Task<IActionResult> Editar(int? id)
         {
-            if (id == null || _context.Consultorios == null)
+            if (id == null || _context.especialidadMedicos == null)
             {
                 return NotFound();
             }
 
-            var consultorio = await _context.Consultorios.FindAsync(id);
+            var especialidadMedico = await _context.especialidadMedicos.FindAsync(id);
 
-            if (consultorio == null)
+            if (especialidadMedico == null)
             {
                 return NotFound();
             }
 
-            return View(consultorio);
+            return View(especialidadMedico);
         }
-        public async Task<IActionResult> Editar(int IdConsultorio, Consultorio consultorio)
+        public async Task<IActionResult> Editar(int IdEspecialidad, EspecialidadMedico especialidadMedico)
         {
-            if (IdConsultorio != consultorio.IdConsultorio)
+            if (IdEspecialidad != especialidadMedico.IdEspecialidad)
             {
                 return NotFound();
             }
@@ -66,10 +66,10 @@ namespace ProyectoFinal.Controllers
             {
                 try
                 {
-                    _context.Update(consultorio);
+                    _context.Update(especialidadMedico);
                     await _context.SaveChangesAsync();
-                    TempData["AlerMessage"] = "Consultorio Actualizado" + "Exitosamente!";
-                    return RedirectToAction("ListadoConsultorio");
+                    TempData["AlerMessage"] = "Especialidad Medica Actualizada" + "Exitosamente!";
+                    return RedirectToAction("ListadoEspecialidadM");
                 }
                 catch (Exception ex)
                 {
@@ -78,31 +78,31 @@ namespace ProyectoFinal.Controllers
                 }
             }
 
-            return View(consultorio);
+            return View(especialidadMedico);
         }
 
         public async Task<IActionResult> Eliminar(int? id)
         {
-            if (id == null || _context.Consultorios == null)
+            if (id == null || _context.especialidadMedicos == null)
             {
                 return NotFound();
             }
-            var consultorio = await _context.Consultorios.FirstOrDefaultAsync(a => a.IdConsultorio == id);
-            if (consultorio == null)
+            var especialidadMedico = await _context.especialidadMedicos.FirstOrDefaultAsync(a => a.IdEspecialidad == id);
+            if (especialidadMedico == null)
             {
                 return NotFound();
             }
             try
             {
-                _context.Consultorios.Remove(consultorio);
+                _context.especialidadMedicos.Remove(especialidadMedico);
                 await _context.SaveChangesAsync();
-                TempData["AlertMessage"] = "Consultorio Eliminado Exitosamente";
+                TempData["AlertMessage"] = "Especialidad Medica Eliminada Exitosamente";
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(ex.Message, "Ocurrio un error, no se pudo eliminar el registro");
             }
-            return RedirectToAction(nameof(ListadoConsultorio));
+            return RedirectToAction(nameof(ListadoEspecialidadM));
         }
     }
 }
